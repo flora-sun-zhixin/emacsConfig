@@ -1,3 +1,5 @@
+I am currently watching [[https://www.youtube.com/watch?v=49kBWM3RQQ8&list=PL9KxKa8NpFxIcNQa9js7dQQIHc81b0-Xg][a series of YouTube videos posted by Mike Zamansky]], and will update and repo accordingly.
+Again, thanks to Noah for recommending me trying Emacs.
 * Links
    - [[http://cestlaz.github.io][Here is the teacher's Blog]] (delete to expand the link, put back ] to recover
 * Lession 1
