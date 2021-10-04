@@ -13,6 +13,11 @@ Again, thanks to Noah for recommending me trying Emacs.
   - installed use-package
   - installed try
   - installed which-key
+** Shortcut
+  - `C-x +`: enlarge the font
+  - `C-x -`: shrink the font
+  - `M-x package-refresh-contents`: refresh the package from melpa
+  - `M-x list-package`: list the available packages
 * Lession 2 -- org
   Show some org-mode
   - review init.el
@@ -39,40 +44,40 @@ Again, thanks to Noah for recommending me trying Emacs.
      `C-h f`: find description of a function
      `C-h k`: find the description of a key. eg j: j runs self insert, C-p: C-p move the cursor to previous line
   3. other elisp command mentioned
-     (previous-line)
-     `C-x C-e` at end of above line makes the cursor to go previous line
+     - (previous-line)
+       `C-x C-e` at end of above line makes the cursor to go previous line
 
-     (previous-line 5)
-     `C-x C-e` at end of above line makes the cursor to go to previous 5-th line
+     - (previous-line 5)
+       `C-x C-e` at end of above line makes the cursor to go to previous 5-th line
      
-     `M-x view-lossage`
-     shows you the history of your command
+     - `M-x view-lossage`
+       shows you the history of your command
   4. add the config
-     (tool-bar-mode -1)
-     hide the tool bar in emacs
+     `(tool-bar-mode -1)` hides the tool bar in emacs
 * Lession 4 -- Buffers
   1. shortcuts to change the buffer and show buffer list
   2. set up the ido mode
   3. change the buffer-list to ibuffer mode
-     d - to mark some buffer to be deleted and move to the next buffer
-     S - to saved the buffer and move to the next buffer
-     u - to remove the buffer flags
-     x - to execute the flagged operations
+     - d - to mark some buffer to be deleted and move to the next buffer
+     - S - to saved the buffer and move to the next buffer
+     - u - to remove the buffer flags
+     - x - to execute the flagged operations
+     - other shortcut see [[http://doc.endlessparentheses.com/Fun/ibuffer-mode.html][here]]
   4. Introduce tabbar
      generate tabs for different file like other ide
 * Lession 5 -- Windows
   1. shortcut for opening windows and switch between windows
-  2. introducing winner-mode
+  2. introducing winner-mode  
      `(winner-mode 1)`it is a build in mode to undo the window operations.
-  3. introducing windmove
+  3. introducing windmove  
      `(windmove-default-keybindings)` enables moving the cursor between windows using the arrow key
-  4. intalling ace-window
+  4. intalling ace-window  
      helps to enumerate the windows when there are multiple so make the window jump more directly
   5. use-package set up
-     we can use either init to initialize or config to configerate the package
-     when there are multiple instruction, need to be wrapped in `progn`
+     - we can use either init to initialize or config to configerate the package
+     - when there are multiple instruction, need to be wrapped in `progn`
   6. Frame operation:
-     open a new frame: `C-x 52`
+     - open a new frame: `C-x 52`
      close the other frame: `C-x 51`
 * Lession 6 -- Search / Swiper
 
