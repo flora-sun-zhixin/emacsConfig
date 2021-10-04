@@ -63,22 +63,22 @@ Again, thanks to Noah for recommending me trying Emacs.
      - u - to remove the buffer flags
      - x - to execute the flagged operations
      - other shortcut see [[http://doc.endlessparentheses.com/Fun/ibuffer-mode.html][here]]
-  4. Introduce tabbar
+  4. Introduce tabbar  \\
      generate tabs for different file like other ide
 * Lession 5 -- Windows
   1. shortcut for opening windows and switch between windows
-  2. introducing winner-mode  
+  2. introducing winner-mode  \\
      `(winner-mode 1)`it is a build in mode to undo the window operations.
-  3. introducing windmove  
+  3. introducing windmove  \\
      `(windmove-default-keybindings)` enables moving the cursor between windows using the arrow key
-  4. intalling ace-window  
+  4. intalling ace-window  \\
      helps to enumerate the windows when there are multiple so make the window jump more directly
   5. use-package set up
      - we can use either init to initialize or config to configerate the package
      - when there are multiple instruction, need to be wrapped in `progn`
   6. Frame operation:
      - open a new frame: `C-x 52`
-     close the other frame: `C-x 51`
+     - close the other frame: `C-x 51`
 * Lession 6 -- Search / Swiper
 
 
