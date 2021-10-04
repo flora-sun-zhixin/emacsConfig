@@ -1,8 +1,10 @@
+#+STARTUP: showall hidestars
+
 I am currently watching [[https://www.youtube.com/watch?v=49kBWM3RQQ8&list=PL9KxKa8NpFxIcNQa9js7dQQIHc81b0-Xg][a series of YouTube videos posted by Mike Zamansky]], and will update and repo accordingly.
 Again, thanks to Noah for recommending me trying Emacs.
 * Links
    - [[http://cestlaz.github.io][Here is the teacher's Blog]] (delete to expand the link, put back ] to recover
-* Lession 1
+* Lession 1 -- setting up the packages
 ** Part 1
   Introducing the series and setting up the package manager
   - Show melpa
@@ -11,11 +13,67 @@ Again, thanks to Noah for recommending me trying Emacs.
   - installed use-package
   - installed try
   - installed which-key
-* Lession 2
+* Lession 2 -- org
   Show some org-mode
   - review init.el
-  - set up README.org
-    `Tab` to expand adn unexpand
-    `Meta-upper arrow` to move the item up and down
-    `C-c C-o` opens the link in default searching engine
+  - set up README.org  
+    1. `Tab` to expand adn unexpand
+    2. `Meta-upper arrow` to move the item up and down
+    3. `C-c C-o` opens the link in default searching engine
+    4. `C-c C-l` generates a text with a hyperlink linked to it
+    5. `M-x revert-buffer` reloads the file
+    6. Start Up Setting -- The first line in this file 
+       - showall: helps to set that every time we open the file, it is extended
+       - hidestars: hide the extra stars to make it look nicer
+    7. installed [[https://github.com/sabof/org-bullets][org-bullets]] for a better view of the list
+* Lession 3 -- Elisp
+  1. ELisp do the math: 
+     (* (+ 20 3) 2)
+     then put the cursor at the end of the line
+     `eval-last-sexp RET` or `C-x C-e`
+     
+     (setq v 100)
+     (+ v v)
+     `C-x C-e` at end of each of the two line above gives 200
+  2. other short cut
+     `C-h f`: find description of a function
+     `C-h k`: find the description of a key. eg j: j runs self insert, C-p: C-p move the cursor to previous line
+  3. other elisp command mentioned
+     (previous-line)
+     `C-x C-e` at end of above line makes the cursor to go previous line
+
+     (previous-line 5)
+     `C-x C-e` at end of above line makes the cursor to go to previous 5-th line
+     
+     `M-x view-lossage`
+     shows you the history of your command
+  4. add the config
+     (tool-bar-mode -1)
+     hide the tool bar in emacs
+* Lession 4 -- Buffers
+  1. shortcuts to change the buffer and show buffer list
+  2. set up the ido mode
+  3. change the buffer-list to ibuffer mode
+     d - to mark some buffer to be deleted and move to the next buffer
+     S - to saved the buffer and move to the next buffer
+     u - to remove the buffer flags
+     x - to execute the flagged operations
+  4. Introduce tabbar
+     generate tabs for different file like other ide
+* Lession 5 -- Windows
+  1. shortcut for opening windows and switch between windows
+  2. introducing winner-mode
+     `(winner-mode 1)`it is a build in mode to undo the window operations.
+  3. introducing windmove
+     `(windmove-default-keybindings)` enables moving the cursor between windows using the arrow key
+  4. intalling ace-window
+     helps to enumerate the windows when there are multiple so make the window jump more directly
+  5. use-package set up
+     we can use either init to initialize or config to configerate the package
+     when there are multiple instruction, need to be wrapped in `progn`
+  6. Frame operation:
+     open a new frame: `C-x 52`
+     close the other frame: `C-x 51`
+* Lession 6 -- Search / Swiper
+
 
