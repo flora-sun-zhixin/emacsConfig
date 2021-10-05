@@ -85,11 +85,13 @@ Again, thanks to Noah for recommending me trying Emacs.
        `C-c l p` insert paragraph
     2. `M-x describe-package` can give introduction about the package
     3. We can just try the package and run the necessary  set-up in the description without actually deploy them in emacs
-    4. `C-q` reformat the paragraph to make it fit in certain maximum length. converts one long line into multiple lines. \\
-       eg. \\
-       Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar nibh.  Nam a sapien. \\
+    4. `C-q` reformat the paragraph to make it fit in certain maximum length. converts one long line into multiple lines. 
 
-       will be turn to \\
+       eg. 
+
+       Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar nibh.  Nam a sapien. 
+
+       will be turn to 
 
        Nullam eu ante vel est convallis dignissim.  Fusce suscipit,
        wisi nec facilisis facilisis, est dui fermentum leo, quis
@@ -104,7 +106,7 @@ Again, thanks to Noah for recommending me trying Emacs.
        nulla lacinia eros.  Sed id ligula quis est convallis tempor.
        Curabitur lacinia pulvinar nibh.  Nam a sapien.
   - install Swiper and Counsel \\
-    Helps to search with flexible matching, somethingSPCsomething \\
+    Helps to search with flexible matching, somethingSPCsomething
     1. now `C-s` will be swiper now
     2. we can use `C-p` and `C-n` to move backward and forward between the matches
     3. in some sense, it replaces ido but for the buffer list and the `C-k` kill buffer options, Swiper and Cousel does not work there. So I am gonna keep Ido
