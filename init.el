@@ -63,6 +63,13 @@
 ;; Ivy mode for auto-completion and flex searching
 (use-package counsel
   :ensure t
+  :config
+  (setq counsel-find-file-ignore-regexp
+        (concat
+         ;; File names beginning with # or .
+         "\\(?:\\`[#.]\\)"
+         ;; File names ending with # or ~
+         "\\|\\(?:\\`.+?[#~]\\'\\)"))
   )
 (use-package swiper
   :ensure t
