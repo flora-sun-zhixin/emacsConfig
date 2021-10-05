@@ -1,4 +1,4 @@
-#+STARTUP: showall hidestars
+#+STARTUP: hidestars
 
 I am currently watching [[https://www.youtube.com/watch?v=49kBWM3RQQ8&list=PL9KxKa8NpFxIcNQa9js7dQQIHc81b0-Xg][a series of YouTube videos posted by Mike Zamansky]], and will update and repo accordingly.
 Again, thanks to Noah for recommending me trying Emacs.
@@ -109,7 +109,19 @@ Again, thanks to Noah for recommending me trying Emacs.
     Helps to search with flexible matching, somethingSPCsomething
     1. now `C-s` will be swiper now
     2. we can use `C-p` and `C-n` to move backward and forward between the matches
-    3. in some sense, it replaces ido but for the buffer list and the `C-k` kill buffer options, Swiper and Cousel does not work there. So I am gonna keep Ido
-    
+    3. as Ivy can replaces ido, so ido is commented out
+    4. bind: can be used to bind keys in use-package instead of setq global-set-key in the config. eg. bind: ("C-x C-f" . cousel-find-file) 
+    5. config vs init: init sets things before loading the package and config afterwards
+* Lession 7 -- Navigating with Avy
+  - Install Avy \\
+    Avy searches on the screen where swiper searches in the document
+* Lession 8 -- Auto completion
+  - `M-/` that comes naturally with emacs will help you auto complete your word.
 
+    eg. If we put the cursor behind the b in the beneath second line of b. And hit `M-/`, it will auto complete you baby, hit again, change to ball, hit again, change to bag
 
+    bag, ball, baby
+    b
+
+  - Installing auto completion. will generate a list that may help, use `M-n` and `M-p` to move downwards or upwards 
+  - `M-x list-colors-display` to display colors in emacs with their names
