@@ -145,5 +145,10 @@ Again, thanks to Noah for recommending me trying Emacs.
     (+ 2 3)
     ,#+END_SRC
     #+END_EXAMPLE
-    
-  
+  - code indent in code block, `C-c '` will bring to a seperate editor and the `C-c '` in the newly opened window will bring us back to the code block with indents
+  - we can run the code in org files(eg. myinit.org) by
+    #+BEGIN_SRC emacs-lisp
+    (org-babel-load-file (expand-file-name "myinit.org"))
+    #+END_SRC
+    it will generate an elisp file called `myinit.el` and contains the elisp code in the code blocks, then it will run it
+
