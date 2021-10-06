@@ -115,3 +115,6 @@
     (set-face-background 'ac-selection-face "RoyalBlue3")
     (add-to-list 'ac-modes 'org-mode)
     ))
+
+;; load the theme
+(load-theme 'deeper-blue t)

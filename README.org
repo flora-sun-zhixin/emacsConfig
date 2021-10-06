@@ -22,7 +22,7 @@ Again, thanks to Noah for recommending me trying Emacs.
   Show some org-mode
   - review init.el
   - set up README.org  
-    1. `Tab` to expand adn unexpand
+    1. `Tab` to expand and unexpand
     2. `Meta-upper arrow` to move the item up and down
     3. `C-c C-o` opens the link in default searching engine
     4. `C-c C-l` generates a text with a hyperlink linked to it
@@ -37,11 +37,11 @@ Again, thanks to Noah for recommending me trying Emacs.
      then put the cursor at the end of the line
      `eval-last-sexp RET` or `C-x C-e`
      
-     (setq v 100)
-     (+ v v)
+     (setq v 100)\\
+     (+ v v)\\
      `C-x C-e` at end of each of the two line above gives 200
-  2. other short cut
-     `C-h f`: find description of a function
+  2. other short cut\\
+     `C-h f`: find description of a function\\
      `C-h k`: find the description of a key. eg j: j runs self insert, C-p: C-p move the cursor to previous line
   3. other elisp command mentioned
      - (previous-line)
@@ -120,8 +120,24 @@ Again, thanks to Noah for recommending me trying Emacs.
 
     eg. If we put the cursor behind the b in the beneath second line of b. And hit `M-/`, it will auto complete you baby, hit again, change to ball, hit again, change to bag
 
-    bag, ball, baby
+    bag, ball, baby \\
     b
 
   - Installing auto completion. will generate a list that may help, use `M-n` and `M-p` to move downwards or upwards 
   - `M-x list-colors-display` to display colors in emacs with their names
+* Lession 9 -- themes
+  - themes that come with emacs `M-x customize-themes` or `M-x load-theme`, need to change the init to make it permenant.
+  - more themes come with the package 
+    #+BEGIN_SRC emacs-lisp
+    (use-package color-theme
+      :ensure t)
+    #+END_SRC
+    then
+    #+BEGIN_SRC emacs-lisp
+    M-x color-theme-sometheme
+    #+END_SRC
+    But I am satisfied with the deeper-blue, so I do not use it
+* Lession 10 -- org init file
+
+    
+  
