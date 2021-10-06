@@ -141,9 +141,9 @@ Again, thanks to Noah for recommending me trying Emacs.
   - code block in org file
     when we put the elisp code in org we can `C-c C-c` to evaluate them. we also need to mark the code block as emacs-lisp like this
     #+BEGIN_EXAMPLE
-    #+BEGIN_SRC emacs-lisp
+    ,#+BEGIN_SRC emacs-lisp
     (+ 2 3)
-    #+END_SRC
+    ,#+END_SRC
     #+END_EXAMPLE
     
   
