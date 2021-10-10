@@ -1,4 +1,5 @@
 #+STARTUP: overview hidestars
+#+PROPERTY: :padline no
 #+TITLE: Emacs Notes
 #+AUTHOR: Flora Sun
 
