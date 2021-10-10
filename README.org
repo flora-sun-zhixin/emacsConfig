@@ -1,4 +1,6 @@
-#+STARTUP: hidestars
+#+STARTUP: overview hidestars
+#+TITLE: Emacs Notes
+#+AUTHOR: Flora Sun
 
 I am currently watching [[https://www.youtube.com/watch?v=49kBWM3RQQ8&list=PL9KxKa8NpFxIcNQa9js7dQQIHc81b0-Xg][a series of YouTube videos posted by Mike Zamansky]], and will update and repo accordingly.
 Again, thanks to Noah for recommending me trying Emacs.
@@ -151,4 +153,36 @@ Again, thanks to Noah for recommending me trying Emacs.
     (org-babel-load-file (expand-file-name "myinit.org"))
     #+END_SRC
     it will generate an elisp file called `myinit.el` and contains the elisp code in the code blocks, then it will run it
+
+* Lession 11 - reveal.js and org presetations
+  - Installing ox-reveal
+    - we ca generate slides by using the "\*" and subslides using "\**"
+    - Options: 
+      - change the theme
+      - no table of contents, 
+      - no enumerate number for titles and subtitles 
+      - use extra css
+      - set title
+      - set author
+      #+begin_src emacs-lisp
+      ,#+REVEAL_THEME: sky
+      ,#+OPTIONS: toc:nil num:nil
+      ,#+REVEAL_EXTRA_CSS: maze.css
+      ,#+TITLE: Flora's Biweekly Report
+      ,#+AUTHOR: Flora Sun
+      #+end_src
+      Other options are available [[https://github.com/hakimel/reveal.js/tree/master/css/theme/source][here]]
+    - Add transitions for certain slides, add this under the specific slides that we want the transitions.
+      #+begin_src emacs-lisp
+      ,#+ATTR_REVEAL: :frag (roll-on)
+      #+END_SRC
+    - If things do not work well, we can just put some html code in the org file
+      #+begin_src emacs-lisp
+      ,#+BEGIN_HTML
+      ,#+END_HTML
+      #+end_src
+    - generate the html file: `C-c C-e R B`
+  - Install htmlize
+  - Insert table in org, `|- TAB` generates row split lines.
+    
 
