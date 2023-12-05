@@ -1,4 +1,10 @@
 #+STARTUP: overview
+* bash
+  #+BEGIN_SRC emacs-lisp
+  ;; change the default shell to be /bin/bash
+  (setenv "SHELL" "/bin/bash")
+  (setq explicit-shell-file-name "/bin/bash")
+  #+END_SRC
 * interface tweaks
   #+BEGIN_SRC emacs-lisp
   ;; surpress the startup message
@@ -9,6 +15,8 @@
   (fset 'yes-or-no-p 'y-or-n-p)
   ;; everytime need to restart buffer because of new configeration, can just hit f5
   (global-set-key (kbd "<f5>") 'revert-buffer)
+  ;; global line mode
+  (global-linum-mode t)
   #+END_SRC
 
 * key binding
@@ -20,8 +28,23 @@
 	mac-option-modifier 'none)
   #+END_SRC
 
+* put autosave and backup to a given space
+  so we won't pollute the folder
+  #+BEGIN_SRC emacs-lisp
+  ;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
+  (custom-set-variables
+    '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+    '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
+
+  ;; create the autosave dir if necessary, since emacs won't.
+  (make-directory "~/.emacs.d/autosaves/" t)
+  #+END_SRC
 * org-mode setting
   #+BEGIN_SRC emacs-lisp
+  ;; make it can execute python in the code block
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python .t)))
   ;; word wrap in org mode, although might make table looks ugly
   (setq org-startup-truncated nil)
   ;; not preserves the indentation of the source code in the src edit buffer
@@ -30,13 +53,27 @@
   ;; relative indent of the source code w.r.t. beginning of #+begin_src.
   (setq org-edit-src-content-indentation 0)
   #+END_SRC
-
+* tramp setting
+  #+begin_src emacs-lisp
+  (custom-set-variables
+   '(tramp-default-method "ssh") ;; set up the default connecting method be ssh
+   '(tramp-default-user "zhixin.sun") ;; set the default use name be zhixin.sun
+   '(tramp-default-host "cigserver1.engr.wustl.edu") ;; set the default server name ot be the server's address
+   '(explicit-shell-file-name "/bin/bash"))
+  ;; with all the above set up I can use the short cut /-:: to access files on the server"
+  #+end_src
+* python setting
+  #+begin_src emacs-lisp
+  ;;enables C-c C-c for python and use the systems completion
+  ;; (setq python-shell-completion-native-enable nil)
+  (setq python-shell-interpreter "python3")
+  #+end_src
 * ibuffer
   changes the bufferlist to ibuffer mode so can kill multiple buffer at one time
   #+BEGIN_SRC emacs-lisp
   (defalias 'list-buffers 'ibuffer-other-window)
   #+END_SRC
-
+  
 * themes
   loads the theme
   #+BEGIN_SRC emacs-lisp
@@ -44,20 +81,6 @@
   #+END_SRC
 
 * packages
-** ace-window
-   helps to jump between windows when there are multiple 
-   #+BEGIN_SRC emacs-lisp
-   (use-package ace-window
-     :ensure t
-     :init
-     (progn
-       (global-set-key [remap other-window] 'ace-window)
-       ;; change the fontsize of the number pop up for each windows
-       (custom-set-faces
-	'(aw-leading-char-face
-	  ((t (:inherit ace-jump-face-foreground :height 2.0)))))
-	  ))
-   #+END_SRC
 ** auto-complete
    #+BEGIN_SRC emacs-lisp
    (use-package auto-complete
@@ -78,6 +101,15 @@
      :ensure t
      :bind ("M-s" . avy-goto-char))
    #+END_SRC
+** anaconda-mode
+   code navigation, documentation lookup and completion for python
+   #+begin_src emacs-lisp
+   ;(use-package anaconda-mode
+   ;  :ensure t
+   ;  :config
+   ;  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+   ;  )
+   #+end_src
 ** cousel
    #+BEGIN_SRC emacs-lisp
    (use-package counsel
@@ -91,6 +123,48 @@
 	    "\\|\\(?:\\`.+?[#~]\\'\\)"))
      )
    #+END_SRC
+** elpy
+   #+BEGIN_SRC emacs-lisp
+	 (use-package elpy
+	   :ensure t
+	   :init
+	   (elpy-enable)
+	   :hook
+	   elpy-mode . (lambda()
+			 (setq python-indent-offset 4)))
+	 ;;   (set-language-environment "UTF-8")
+	 ;;   ;; use flycheck as the syntax checker
+	 ;;   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+	 ;;   (add-hook 'elpy-mode-hook 'flycheck-mode)
+	 ;;   ;; use jedi
+	 ;;   (setq elpy-rpc-backend "jedi")
+	 ;;   ;; reformat at the save
+	 ;;   (add-hook 'elpy-mode-hook (lambda ()
+	 ;; 			    (add-hook 'before-save-hook
+	 ;; 				      'elpy-format-code nil t))))
+
+   #+END_SRC
+** flycheck
+   for syntax checking for multiple coding languages.
+   #+begin_src emacs-lisp
+   (use-package flycheck
+     :ensure t
+     :init
+     (global-flycheck-mode t))
+   #+end_src
+** grip-mode
+   requires install [[https://cs.brown.edu/courses/csci1320/tutorials/cs132-git-markdown-tutorial/markdown-git.html#:~:text=Grip%20is%20a%20command%2Dline,without%20requiring%20a%20page%20refresh.][grip]] on the computer. So it can render the markdown file in github flavor live.
+   #+begin_src emacs-lisp
+      (use-package grip-mode
+	:ensure t
+	:after (:any org markdown-mode)
+	:bind ("C-c g" . grip-mode) ;; Make a keybinding: `C-c g'
+	:init
+	(setq grip-binary-path "/Library/Frameworks/Python.framework/Versions/3.10/bin/grip")
+	(setq grip-github-user "FloraSun9101")
+	(setq grip-github-password "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"))
+   #+end_src
+
 ** htmlize
    helps in reveal.js
    #+BEGIN_SRC emacs-lisp
@@ -111,6 +185,16 @@
        (setq ivy-display-style 'fancy)
        ))
     #+END_SRC
+** markdown-mode
+#+begin_src emacs-lisp
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+#+end_src
 ** org-bullets
    makes the list in org files looks nicer
    #+BEGIN_SRC emacs-lisp
@@ -119,6 +203,35 @@
       :config
       (add-hook 'org-mode-hook #'org-bullets-mode)) ;; from the homepage
    #+END_SRC
+** org-preview-html
+   helps to generates html preview for org mode
+   #+BEGIN_SRC emacs-lisp
+   (use-package org-preview-html
+     :ensure t
+     :config
+     (setq org-preview-html-refresh-configuration 'save))
+   #+END_SRC
+** ox-gfm
+   Github Flavored markdown rendering from org
+   #+begin_src emacs-lisp
+   ;; Add gfm/md backends
+   (use-package ox-gfm
+     :ensure t
+     :defer t
+     :init
+     (add-to-list 'org-export-backends 'md)
+     (with-eval-after-load 'counsel
+       (bind-key [remap org-set-tags-command] #'counsel-org-tag org-mode-map)))
+   #+end_src
+** projectile
+   #+begin_src emacs-lisp
+   (use-package projectile
+     :ensure t
+     :config
+     (projectile-mode +1)
+     ;; Recommended keymap prefix on macOS
+     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+   #+end_src
 ** reveal.js
    makes html presentation using org file
    #+BEGIN_SRC emacs-lisp
@@ -153,21 +266,6 @@
    (use-package try
 	:ensure t)
    #+END_SRC
-** org-preview-html
-   helps to generates html preview for org mode
-   #+BEGIN_SRC emacs-lisp
-   (use-package org-preview-html
-     :ensure t
-     :config
-     (setq org-preview-html-refresh-configuration 'save))
-   #+END_SRC
-** elpy
-   #+BEGIN_SRC emacs-lisp
-   (use-package elpy
-     :ensure t
-     :init
-     (elpy-enable))
-   #+END_SRC
 * Disabled mode or packages
 ** ido-mode
    #+BEGIN_SRC emacs-lisp
@@ -184,3 +282,53 @@
    ;;   :ensure t
    ;;   :config (which-key-mode))
    #+END_SRC
+** jedi
+   A python auto-completion packages.
+   #+begin_src emacs-lisp
+   ;; (use-package jedi
+   ;;   :ensure t
+   ;;   :init
+   ;;   (add-hook 'python-mode-hook 'jedi:setup)
+   ;;   (add-hook 'python-mode-hook 'jedi:ac-setup))
+   #+end_src
+
+** ace-window
+   helps to jump between windows when there are multiple 
+   #+BEGIN_SRC emacs-lisp
+   ;; (use-package ace-window
+   ;;   :ensure t
+   ;;   :init
+   ;;   (progn
+   ;;     (global-set-key [remap other-window] 'ace-window)
+   ;;     ;; change the fontsize of the number pop up for each windows
+   ;;     (custom-set-faces
+   ;;      '(aw-leading-char-face
+   ;;        ((t (:inherit ace-jump-face-foreground :height 2.0)))))
+   ;;        ))
+   #+END_SRC
+** anaconda-mode
+   #+begin_src emacs-lisp
+   ;; (use-package anaconda-mode
+   ;;   :ensure t
+   ;;   :init
+   ;;   (add-hook 'python-mode-hook 'anaconda-mode)
+   ;;   (add-hook 'python-mode-hook 'anaconda-eldoc-mode))
+   ;;   ;;(setq python-shell-interpreter "/ssh:zhixin.sun@cigserver3.seas.wustl.edu:anaconda3/bin"))
+   #+end_src
+** conda
+   helps the anaconda-mode find the conda environment
+   #+begin_src emacs-lisp
+   ;; (use-package conda
+   ;;   :ensure t
+   ;;   :init
+   ;;   ;; if you want interactive shell support, include:
+   ;;   (conda-env-initialize-interactive-shells)
+   ;;   ;; if you want eshell support, include:
+   ;;   (conda-env-initialize-eshell)
+   ;;   ;; if you want auto-activation (see below for details), include:
+   ;;   (conda-env-autoactivate-mode t)
+   ;;   (custom-set-variables
+   ;;    '(conda-anaconda-home "~/anaconda3")))
+   ;;   ;;(setq-default mode-line-format (cons '(:exec conda-env-current-name) mode-line-format)))
+   #+end_src
+  
